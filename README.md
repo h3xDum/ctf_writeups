@@ -1,7 +1,7 @@
 # HI ! 
 
-### ___This repository containts reversing writeups___  
-### ___for these sites/events___
+### ___This repository containts reversing writeups___ 
+### ___for these sites/events :___
 * __Flare-on__
 * __Imaginary CTF__
 * __HACKTHEBOX__
