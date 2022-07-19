@@ -53,6 +53,6 @@ to authenticate ourself as Admin and we will get the flag_
 $ echo -n 'goldenticket' | base64  #dont forget -n or else echo will append "\n"
 ```
 ## flag
-![flare_on1](https://github.com/h3xDum/ctf_writeups/blob/master/Flare_on/cred_checker/flag.png
+![flare_on1](https://github.com/h3xDum/ctf_writeups/blob/master/Flare_on/cred_checker/flag.png)
 
 
