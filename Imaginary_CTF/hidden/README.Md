@@ -40,4 +40,75 @@ we are shown with a "can you get the flag" message___
  
  ___First we see "edi" is being cleared so its confirmed that the function doesnt have  
  anything to do with printing the message, we do see a syscall to ```sys_read``` which  
- is  logiical because its probably where we were prompted for input while previously running  the program, next we can see that 3 strings are being pushed to the stack (they are not a valid ascii values so whatever in there will probably get deobfuscated) now ___
+ is  logiical because its probably where we were prompted for input while previously running  the program, next we can see that 3 strings are being pushed to the stack (they are not a valid ascii values so whatever in there will probably get deobfuscated) and "r11" get the value of rsp to be able to point to the newly created stack frame that hold the obfuscated string___
+
+ ![loop](./screenshots/hidden_loop.png)
+
+___Here we see the actual deobfuscation logic___  
+* A value is being set into "r8" -> [key] & "r15" -> [counter]
+* A loop start with this pseudo code:
+    ```
+    loop 3 times:
+        imul the key;
+        xor key , our_input [8 bytes every round]
+        cmp  xor'ed_key , stack_string [8 bytes every round]
+    
+    # pushed the string "fail" to the stack every round
+    ```
+___since we know that xor is reversable which means that :___   
+
+key ^ our_input = stack_string  
+= =  
+our_input = key ^ stack_string  
+
+___So in order to deobfuscate each of the 3 string we need to___  
+*   ___xor key , stack_string ---> result in the first 8 bytes of our input___  
+*   ___Imul corresponding correct key --->  result in correct next input___
+*   ___repeat the length of the stack string___  
+&nbsp;
+## Finding the flag
+___We can either solve it dynamically with a debugger and  
+finding the correct 8 bytes of the key every time then  killing  
+the proccess & repeating, in this case it wont take long because  
+the key is only 24 bytes but i wrote a script to statically reverse  
+the algorithme no matter the key length___
+```python
+from pwn import *
+
+
+# Date statically gathered 
+stack_strings = [0x7870148BF499D6F9 , 0x435E9C9331495B55, 0x910A96FDF83DEB08 ]
+hard_coded_value = 0x39E324B32F573C94 
+flag = ""
+
+def imul(hex_data):
+    hex_data = hex_data * hex_data
+    hex_data = hex_data & 0xFFFFFFFFFFFFFFFF
+    return hex_data
+
+# Initializing data 
+hard_coded_value = imul(hard_coded_value)
+tmp = hard_coded_value
+hard_coded_value = tmp ^ stack_strings[0]
+
+# Convert to little endian & push the flag
+flag += (p64(hard_coded_value , endian = 'little')).decode() 
+
+
+for i in range(1 , 3):
+
+    # setting next value 
+    hard_coded_value = tmp ^ hard_coded_value
+    
+    # imul and clean it 
+    hard_coded_value = imul(hard_coded_value)
+    tmp = hard_coded_value 
+
+    # pushing the flag 
+    hard_coded_value = hard_coded_value ^ stack_strings[i]
+    flag += (p64(hard_coded_value , endian = 'little')).decode()    
+    
+print(flag)    
+
+#ictf{h1ddenc0de_1a29d3}       
+```
