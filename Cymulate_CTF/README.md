@@ -16,6 +16,7 @@ we get function names, lets open it in IDA to check  what the file does.
 
 * __Initial Static Analysis__
   __$ Anti-debuggin__
+   
    <img src="./screenshots/main_1.png" width="560" height=400>
 
     This is the start of our `main` function, immediately we see a call to a  `antidebug`  
