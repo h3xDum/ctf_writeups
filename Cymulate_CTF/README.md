@@ -12,17 +12,19 @@ Its a 64-bit ELF file and its not stripped which means that
 we get function names, lets open it in IDA to check  
 what the file does
 
-![disass_main](./screenshots/main_1.png)
+<center><img src="./screenshots/main_1.png" width="400" height=350></center>
 
-This is the start of our `main` function, immediately we see a call to  
-a `antidebug` function and than it check if its return value is 0 to  
-determine execution flow, lets check what the function does
+This is the start of our `main` function, immediately we  
+see a call to a  `antidebug` function and than it check if its  
+return value is 0 to determine execution flow, lets check  
+what the function does
 
-<img src="./screenshots/anti_debug.png" width="300">
+<center><img src="./screenshots/anti_debug.png" width="400" height=350></center>
   
   The function simply call ptrace with the _"traceme"_ value to check
   if the file is being debbuged, to work around it we can manually set  
-`eax` value to 0 after it preforms the `ptrace` call, or to reverse the jump in `main`
+`eax` value to 0 after it preforms the `ptrace` call, or to reverse the  
+_jz_ --> _jzn_
 
 
 
