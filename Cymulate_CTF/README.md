@@ -31,7 +31,8 @@ we get function names, lets open it in IDA to check  what the file does.
    call, or to reverse the _jz_ --> _jzn_  
    
 &nbsp;
-   __$ File handling__
+   __$ File handling__  
+   
    <img src="./screenshots/file_handle.png" width="700" height=400>
 
 
