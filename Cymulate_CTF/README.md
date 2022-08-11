@@ -28,7 +28,8 @@ we get function names, lets open it in IDA to check  what the file does.
   
    The function simply call ptrace with the _"traceme"_ value to check if the file is being  
    debbuged, to work around it we can manually set `eax` value to 0 after it preforms the `ptrace`  
-   call, or to reverse the _jz_ --> _jzn_
+   call, or to reverse the _jz_ --> _jzn_  
+   
 &nbsp;
    __$ File handling__
    <img src="./screenshots/file_handle.png" width="700" height=400>
