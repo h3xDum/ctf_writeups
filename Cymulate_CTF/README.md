@@ -49,7 +49,8 @@ we get function names, lets open it in IDA to check  what the file does.
    to read, there's a call to _memcpy_ to copy 78648 bytes from the data segment to 
    a diffrent location  
    (lets call the pointer to that address file_ptr), basically  
-   duplicating the array so the values can be modifed without changed the original file.  
+   duplicating the array so the values  
+   can be modifed without changed the original file.  
    Now thres a call a function called `validate` and if its return value is 0 than the  
    validation succeeded
    
