@@ -18,11 +18,12 @@ This is the start of our `main` function, immediately we see a call to
 a `antidebug` function and than it check if its return value is 0 to  
 determine execution flow, lets check what the function does
 
-![anti_debug](./screenshots/anti_debug.png)
+<img src="./screenshots/anti_debug.png" width="300">
   
   The function simply call ptrace with the _"traceme"_ value to check
   if the file is being debbuged, to work around it we can manually set  
 `eax` value to 0 after it preforms the `ptrace` call, or to reverse the jump in `main`
+
 
 
 
