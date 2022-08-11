@@ -32,7 +32,7 @@ we get function names, lets open it in IDA to check  what the file does.
    
     __$ File handling__  
    
-   <img src="./screenshots/file_handle.png" width="700" height=400>
+   <img src="./screenshots/file_handle.png" width="700" height=400>  
    The binary open a file called bin_bin that needs to be in the current directory and  
    than calls
    *  fseek -> set the pointer to the end of the file (2/SEEK_END)
