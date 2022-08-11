@@ -14,7 +14,8 @@ we get function names, lets open it in IDA to check  what the file does.
 &nbsp;
 
 
-* __Initial Static Analysis__
+* __Initial Static Analysis__  
+
   __$ Anti-debuggin__
    
    <img src="./screenshots/main_1.png" width="560" height=400>
