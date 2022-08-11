@@ -18,13 +18,13 @@ we get function names, lets open it in IDA to check  what the file does.
 
   __$ Anti-debuggin__
    
-   <img src="./screenshots/main_1.png" width="560" height=400>
+   <img src="./screenshots/main_1.png" width="560" height="400">
 
     This is the start of our `main` function, immediately we see a call to a  `antidebug`  
     function and than a check if its return value is 0 to determine execution flow, lets check  
     what the function does
 
-   <img src="./screenshots/anti_debug.png" width="560" height=400>
+   <img src="./screenshots/anti_debug.png" width="560" height="400">
   
    The function simply call ptrace with the _"traceme"_ value to check if the file is being  
    debbuged, to work around it we can manually set `eax` value to 0 after it preforms the `ptrace`  
@@ -32,14 +32,20 @@ we get function names, lets open it in IDA to check  what the file does.
    
     __$ File handling__  
    
-   <img src="./screenshots/file_handle.png" width="700" height=400>  
-     
+   <img src="./screenshots/file_handle.png" width="700" height="400">  
+
    The binary open a file called bin_bin that needs to be in the current directory and  
    than calls
    *  fseek -> set the pointer to the end of the file (2/SEEK_END)
-   *  ftell -> get the number of bytes from start to pointer (end of file)
-   *  ftell -> set the pointer to the start of the file (0/SEEK_SET)
+   *  ftell  -> get the number of bytes from start to pointer (end of file) and pass it to var_13350
+   *  fseek -> set the pointer to the start of the file (0/SEEK_SET)  
+   also `cmp var_13354 , 0` will always result in true which will go to a path that  
+   prints a message and exit, thats a check that always prevents execution so jmp must be reversed  
 
+   
+   __$ Validation__  
+   <img src="./screenshots/main_2.png" width="700" height="400">
+   
 
 
 
