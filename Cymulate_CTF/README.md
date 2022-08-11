@@ -50,7 +50,10 @@ we get function names, lets open it in IDA to check  what the file does.
    a diffrent location  
    (lets call the pointer to that address file_ptr), basically duplicating the array so the values  
    can be modifed without changed the original file ,now thres a call a function called `validate`  
-   and if its return value is 0 than the validation succeeded
+   and if its return value is 0 than the validation succeeded, lets have a look at the vlidate function  
+   <img src="./screenshots/validate.png" width = "900" height="900">
+
+
    
 
 
