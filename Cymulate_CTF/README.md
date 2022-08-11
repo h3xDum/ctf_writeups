@@ -25,11 +25,9 @@ what the function does
 
 <img src="./screenshots/anti_debug.png" width="560" height=400>
   
-The function simply call ptrace with the _"traceme"_ value to check
-if the file is being  
-debbuged, to work around it we can manually set  
-`eax` value to 0 after it preforms the `ptrace` call, or to reverse the  
-_jz_ --> _jzn_
+The function simply call ptrace with the _"traceme"_ value to check if the file is being  
+debbuged, to work around it we can manually set `eax` value to 0 after it preforms the `ptrace`  
+call, or to reverse the _jz_ --> _jzn_
 
 
 
