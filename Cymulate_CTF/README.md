@@ -14,7 +14,7 @@ we get function names, lets open it in IDA to check  what the file does.
 
 
 
-####_$ Initial Static Analysis_
+#### $ _Initial Static Analysis_
 <p align="left">
   <img width="560" height="400" src="./screenshots/main_1.png">
 </p>
