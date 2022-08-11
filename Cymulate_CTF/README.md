@@ -19,7 +19,8 @@ we get function names, lets open it in IDA to check  what the file does.
   <img width="560" height="400" src="./screenshots/main_1.png">
 </p>
 
-This is the start of our `main` function, immediately we see a call to a  `antidebug` function and than a check if its return value is 0 to determine execution flow, lets check what the function does
+This is the start of our `main` function, immediately we see a call to a  `antidebug`  
+function and than a check if its return value is 0 to determine execution flow, lets check what the function does
 
 <img src="./screenshots/anti_debug.png" width="560" height=400>
   
