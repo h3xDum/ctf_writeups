@@ -67,8 +67,21 @@ we get function names, lets open it in IDA to check  what the file does.
                       return 1
               
    ```
-   In order to solve it we will need export the memory dump from IDA (78648 bytes from
+   In order to solve it we will need export the memory dump from IDA (78648 bytes from  
    the starting address) into a file called _bbbdump_
+   ```
+   # snippet of the dump format 
+   26 75 39 19 3b 31 36 5f 37 68 59 30 75 5f 39 30 
+   34 5f 9 68 58 30 75 5f 99 21 37 5f 37 68 59 30
+   35 5f 39 30 37 5f 37 68 21 1b 74 5f 39 30 37 5f
+   37 68 59 30 35 5f 1 30 3a 5f 77 68 46 30 6b 5f
+   3f 30 37 5f 33 68 59 30 35 5f 39 30 37 5f 37 68 
+   19 30 75 5f 39 30 37 5f 77 68 59 30 75 5f 39 30 
+   ef 5d 37 68 59 30 75 5f e1 32 37 5f 37 68 59 30 
+
+   ```  
+   __$ Reversing the Validation__
+
    ```python
 
    """
