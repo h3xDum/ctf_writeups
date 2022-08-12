@@ -56,14 +56,15 @@ we get function names, lets open it in IDA to check  what the file does.
    Again i've added comments and changed var names to make it easier to follow, basically  
    thats a pseudo code of the function
    ```
-   def validate(bin_bin , enc_data_cpy , file_len , num):
+   def validate(bin_bin , enc_data , file_len , num):
 
           if file_len != num:
               return 1 
           
           key = "h7_709_u0Y" # mind the order (big-endian so need to reverse this)
           for i in range(file_len):
-                enc_data_cpy
+                if (enc_data[i] ^ key[0 till 9] != bin_bin[i] ):
+                      return 1
               
    ```
 
