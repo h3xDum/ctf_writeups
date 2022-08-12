@@ -67,6 +67,44 @@ we get function names, lets open it in IDA to check  what the file does.
                       return 1
               
    ```
+   In order to solve it we will need export the memory dump from IDA (78648 bytes from
+   the starting address) into a file called _bbbdump_
+   ```python
+
+   """
+   The validate function check for ->
+        bin_bin_byte[index] ^ key[key_index] = enc_data[index]
+
+   since xor is reverseable than ->
+        enc_data[index] ^ key[key_index] = bin_bin_byte[index]
+
+  that way we can get the file that can pass the validate function
+  """
+
+  key_counter = 0 # 0 ---- > 9  
+  decryption_key = [0x59 , 0x30, 0x75, 0x5F, 0x39, 0x30, 0x37, 0x5F, 0x37, 0x68]
+
+
+  # Create bin_bin file
+  with open('../mem_dumps/bbbdump') as f , open('bin_bin' , 'wb') as out:
+    counter = 0
+    # loop through the encrypted data
+    for line in f:
+      
+      # build line string
+        solution = []
+        for hex_byte in line.split():
+          counter += 1 
+          if key_counter == 10:
+              key_counter = 0
+
+          tmp = int(hex_byte,16) ^ decryption_key[key_counter]
+          solution.append(tmp)
+          key_counter +=1
+        
+        out.write(bytes(solution))
+            
+   ```
 
 
 
