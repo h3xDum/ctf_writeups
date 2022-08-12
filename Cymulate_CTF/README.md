@@ -52,7 +52,8 @@ we get function names, lets open it in IDA to check  what the file does.
    and if its return value is 0 than the validation succeeded, lets have a look at the vlidate function  
    
    <img src="./screenshots/validate.png" width = "900" height="900">  
-   Againt i've added comments and changed var names to make it easier to follow, basically  
+   
+   Again i've added comments and changed var names to make it easier to follow, basically  
    thats a pseudo code of the function
    ```
    def validate(bin_bin , enc_data_cpy , file_len , num):
