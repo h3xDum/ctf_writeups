@@ -48,13 +48,23 @@ we get function names, lets open it in IDA to check  what the file does.
    I've modified some var names and and added comments to make the assembly easier  
    to read, there's a call to _memcpy_ to copy 78648 bytes from the data segment to 
    a diffrent location  
-   (lets call the pointer to that address file_ptr), basically duplicating the array so the values  
-   can be modifed without changed the original file ,now thres a call a function called `validate`  
+   (lets call the pointer to that address enc_data),now theres a call a function called `validate`  
    and if its return value is 0 than the validation succeeded, lets have a look at the vlidate function  
-   <img src="./screenshots/validate.png" width = "900" height="900">
-
-
    
+   <img src="./screenshots/validate.png" width = "900" height="900">  
+   Againt i've added comments and changed var names to make it easier to follow, basically  
+   thats a pseudo code of the function
+   ```
+   def validate(bin_bin , enc_data_cpy , file_len , num):
+
+          if file_len != num:
+              return 1 
+          
+          key = "h7_709_u0Y" # mind the order (big-endian so need to reverse this)
+          for i in range(file_len):
+                enc_data_cpy
+              
+   ```
 
 
 
