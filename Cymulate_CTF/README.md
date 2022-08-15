@@ -233,7 +233,7 @@ we get function names, lets open it in IDA to check  what the file does.
   we cmp each byte from the shuffled flag.zip[index] with the encrypted_memory[index]  
   and if its the same we pass the validation.  
 
-   __$ Reversing the shuffle function__
+   __$ Reversing the shuffle function__  
    We have the enc_data which is the output of the original data (what should be flag.zip)  
    after it was swapped by the shuffle algorithem, if we will manage to reverse the swaps  
    on the enc_data we will get the original file that can pass the `validate` check.  
