@@ -325,7 +325,7 @@ we get function names, lets open it in IDA to check  what the file does.
 
 
   return(0);
-}
+  }
 ```
   
 
