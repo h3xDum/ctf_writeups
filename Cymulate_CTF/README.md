@@ -238,7 +238,7 @@ we get function names, lets open it in IDA to check  what the file does.
    after it was swapped by the shuffle algorithem, if we will manage to reverse the swaps  
    on the enc_data we will get the original file that can pass the `validate` check.  
    
-   __index mapping logic__  
+* __index mapping logic__  
    we need to understand how the swap will rotate our indexes,  
    since the swap may occuer more than once for a given index(since  
    we swapping *array size* times and not *array size / 2* &&  
