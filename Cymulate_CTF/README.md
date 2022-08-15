@@ -204,7 +204,7 @@ we get function names, lets open it in IDA to check  what the file does.
   }
   ```
   they are using a swap function which they created  
-  <img src="./screenshots/swap.png" width="700" height="400">  
+  <img src="./screenshots/swap.png" width="600" height="400">  
   the function grab the byte pointed by rdi(first argument) and save it in a a diffrent location  
   i called _mem_ptr_byte_ (essentially storing in tmp var), than grab the byte pointed by  
   rsi(second argument , in this case its the flag.zip[rand() % (loop_index + 1)]) and `mov` its  
