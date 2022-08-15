@@ -104,18 +104,18 @@ we get function names, lets open it in IDA to check  what the file does.
     # loop through the encrypted data
     for line in f:
       
-      # build line string
-        solution = []
+      # create an array for the correct hex values
+        bytes_output = []
         for hex_byte in line.split():
           counter += 1 
           if key_counter == 10:
               key_counter = 0
-
+          # xor values to get the valid one
           tmp = int(hex_byte,16) ^ decryption_key[key_counter]
-          solution.append(tmp)
+          bytes_output.append(tmp)
           key_counter +=1
         
-        out.write(bytes(solution))
+        out.write(bytes(bytes_output))
             
    ```
 
