@@ -130,7 +130,35 @@ we get function names, lets open it in IDA to check  what the file does.
   $ file ./bin_bin
   ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, 
   interpreter /lib64/ld-linux-x86-64.so.2, for GNU/Linux 3.2.0, not stripped
-  ```
+  ```  
+  I've opened the file in IDA and its the same as _bin_bin_bin_ and the only  
+  thing changed is the mem_dump bytes and the bytes of the key so i've modified  
+  the values in the script to generate the next binary file called _"bin"_
+  ```python
+  key_counter = 0 # 0 ---- > 9  
+  decryption_key = [0x33 , 0x5F, 0x50, 0x61, 0x35, 0x35, 0x77, 0x30, 0x52, 0x44]
+
+
+  # Create bin_bin file
+  with open('../mem_dumps/bbdump') as f , open('bin' , 'wb') as out:
+
+    # loop through the encrypted data
+    for line in f:
+      
+      # build correct hex values for each line grabbed
+        byte_output = []
+        for hex_byte in line.split():
+          
+          # check for reset on key_counter
+          if key_counter == 10:
+              key_counter = 0
+
+          correct_byte = int(hex_byte,16) ^ decryption_key[key_counter]
+          byte_output.append(correct_byte)
+          key_counter +=1
+        
+        out.write(bytes(byte_output))
+  ``` 
 
 
 
