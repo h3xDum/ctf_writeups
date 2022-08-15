@@ -239,14 +239,95 @@ we get function names, lets open it in IDA to check  what the file does.
    on the enc_data we will get the original file that can pass the `validate` check.  
    
 * __index mapping logic__  
+  ```
+   # why cant we use the same shuffle to retrive the original
    we need to understand how the swap will rotate our indexes,  
    since the swap may occuer more than once for a given index(since  
    we swapping *array size* times and not *array size / 2* &&  
    rand()%(i+1) may produce identical outputs for diffrent i values  
    (given the rand() will generate a diffrent result from previous rounds)  
    resulting in swapping the same index more than once) for example:
+   
+   index_array  = [0,1,2,3,4,5,6,7]
+   rotate index like so:
+   0 --> 4 --> 7 
+	 index 0 swapped with index 4,
+	 index 4 swapped with index 7.
+	 index_array_shuffled = [4,1,2,3,7,5,6,0] 
+
+   since value at index 4 moved more than once, simply 
+	 applying the shuffle algorithem wont reverse the algorithem.
+
+   # solution vector 
+	 what we can do is create a mapping for index swaps.
+	 create index_arr and pass it through the shffule so: starting_index -> final_index
+	 for example:
+	   
+	 arr = [ 'a' , 'b' , 'c' , 'd' , 'e' , f' ,'g' , 'h' ]
+	 swap index 0 --> 4 --> 7 
+	 shuffled_arr = [ 'e' , 'b' , 'c' , 'd' , 'h' , 'f' , 'g' 'e']
+	   
+	 index_arr = [ 0 , 1 , 2 , 3 , 4 , 5 , 6 , 7 ] 
+	 shuffle index_arr under our algorithem
+	 index_arr_shuffled = [4 , 1 , 2 , 3 , 7 , 5 ,  6 , 0 ]
+
+   Now using the index_arr_shuffled mapping we can retrive the original
+   array from the shuffled one ( for example the first value on our shuffled array
+   should be according to the index_arr_shuffled on the fourth position, which is the 
+   actuall valid position)
+
+   # generic mapping  
+	 for ( i = 0; i < len(shuffled_arr); i++ ) {
+	      shuffled_arr[i]  =  shuffled_arr[index_arr_shuffled[i]]
+	 }
+  
+  ```
+  lets write the final code to retrive the flag.zip from the obfuscated memory dump  
+  (insted of using the dump file I've used it as an array and called it "mem_dump"  
+  in my c file, since its 46129 bytes long i didnt include it in this source code  
+  but it will be included in "mem_dumps" folder as "bdump" for you to copy and use)
+
+  ```C 
+  int main(){ 
+   
+  /* Intializing rand with static seed */
+  srand(0x1337u);
+    
+	/* Intializing index array */
+	int index_arr[46129];
+	for (size_t i=0; i<46129; i++){
+		index_arr[i] = i;
+	}
+
+	/* Swapping indexes for later mapping */
+	for (size_t i=46129-1; i>0; i--){
+		int rnd_val = rand() % (i+1);
+		int tmp = index_arr[i];
+		index_arr[i] = index_arr[rnd_val];
+		index_arr[rnd_val] = tmp;	
+	}
+
+	/* Creare copy of the memory dump for reference */
+	unsigned char mem_dump_cpy[46129];
+	for (size_t i=0; i<46129; i++){
+		mem_dump_cpy[i] = mem_dump[i];
+	}
+
+	/* Reverse the swap */
+	for (size_t i=0; i<46129; i++){
+		mem_dump[index_arr[i]] = mem_dump_cpy[i];
+	}
+
+	/* Write byte array to file */
+	FILE *fp = fopen("flag.zip" , "wb");
+	fwrite(mem_dump, 1 , sizeof(mem_dump), fp);
+	fclose(fp);
 
 
+  return(0);
+}
+
+  ```
 
 
 
