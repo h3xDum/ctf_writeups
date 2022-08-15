@@ -228,7 +228,7 @@ we get function names, lets open it in IDA to check  what the file does.
   &nbsp;  
 
   Finally lets check what the `validate` function does  
-  <img src="./screenshots/bin_validate" width="750" height="700">  
+  <img src="./screenshots/bin_validate.png" width="750" height="700">  
   Its the same validate as before but without xoring values with a key, which mean  
   we cmp each byte from the shuffled flag.zip[index] with the encrypted_memory[index]  
   and if its the same we pass the validation.
