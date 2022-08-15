@@ -184,7 +184,7 @@ we get function names, lets open it in IDA to check  what the file does.
   
   lets understand the `shuffle` function, it takes the file_length and the adress to  
   the allocated memory (essentially the bytes of flag.zip) as arguments through rdi & esi  
-  <img src="./screenshots/bin_validate.png" width="900" height="600">  
+  <img src="./screenshots/bin_validate.png" width="750" height="700">  
   I've left comments on the assembly instruction that modified values to have full
   understanding on what  
   the algorithem does, but on the high level thats the pseudo code  
