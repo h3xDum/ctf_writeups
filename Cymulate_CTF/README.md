@@ -123,8 +123,8 @@ we get function names, lets open it in IDA to check  what the file does.
 &nbsp;
 * __bin_bin Analysis__  
 
-I've run `file` on it and got the same result as earlier, this is a 64-bit  
-not stripped ELF file as well  
+  I've run `file` on it and got the same result as earlier, this is a 64-bit  
+  not stripped ELF file as well  
   
   ```
   $ file ./bin_bin
