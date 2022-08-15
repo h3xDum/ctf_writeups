@@ -231,7 +231,27 @@ we get function names, lets open it in IDA to check  what the file does.
   <img src="./screenshots/bin_validate.png" width="750" height="700">  
   Its the same validate as before but without xoring values with a key, which mean  
   we cmp each byte from the shuffled flag.zip[index] with the encrypted_memory[index]  
-  and if its the same we pass the validation.
+  and if its the same we pass the validation.  
+
+   __$ Reversing the shuffle function__
+   We have the enc_data which is the output of the original data (what should be flag.zip)  
+   after it was swapped by the shuffle algorithem, if we will manage to reverse the swaps  
+   on the enc_data we will get the original file that can pass the `validate` check.  
+   
+   __index mapping logic__  
+   we need to understand how the swap will rotate our indexes,  
+   since the swap may occuer more than once for a given index(since  
+   we swapping *array size* times and not *array size / 2* &&  
+   rand()%(i+1) may produce identical outputs for diffrent i values  
+   (given the rand() will generate a diffrent result from previous rounds)  
+   resulting in swapping the same index more than once) for example:
+
+
+
+
+
+
+
    
 
     
