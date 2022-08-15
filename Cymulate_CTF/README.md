@@ -184,7 +184,7 @@ we get function names, lets open it in IDA to check  what the file does.
   
   lets understand the `shuffle` function, it takes the file_length and the adress to  
   the allocated memory (essentially the bytes of flag.zip) as arguments through rdi & esi  
-  <img src="./screenshots/bin_validate.png" width="700" heigh="400>  
+  <img src="./screenshots/bin_validate.png" width="700" heigh="400">  
    
 
     
