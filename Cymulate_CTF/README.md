@@ -100,19 +100,21 @@ we get function names, lets open it in IDA to check  what the file does.
 
   # Create bin_bin file
   with open('../mem_dumps/bbbdump') as f , open('bin_bin' , 'wb') as out:
-    counter = 0
+    
     # loop through the encrypted data
     for line in f:
       
       # create an array for the correct hex values
         bytes_output = []
         for hex_byte in line.split():
-          counter += 1 
+
+          # check for key index reset       
           if key_counter == 10:
               key_counter = 0
+          
           # xor values to get the valid one
-          tmp = int(hex_byte,16) ^ decryption_key[key_counter]
-          bytes_output.append(tmp)
+          correct_byte = int(hex_byte,16) ^ decryption_key[key_counter]
+          bytes_output.append(correct_byte)
           key_counter +=1
         
         out.write(bytes(bytes_output))
