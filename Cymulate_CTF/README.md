@@ -158,7 +158,28 @@ we get function names, lets open it in IDA to check  what the file does.
           key_counter +=1
         
         out.write(bytes(byte_output))
-  ``` 
+  ```  
+  &nbsp;
+* __bin Analysis__  
+  
+  its a 64-bit not stripped ELF file as well  
+  
+  ```
+  $ file ./bin
+  ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked,
+  interpreter /lib64/ld-linux-x86-64.so.2, for GNU/Linux 3.2.0, not stripped
+  ```  
+  It follows the same anti debugging, file handling (insted of bin/bin_bin it  
+  tries to open _"flag.zip"_) and  control flow (cmp that prevernt execution)  
+  as the previous  bin_bin_bin && bin_bin, although it handles the validation diffrently  
+  (added comments && changed var names to easier read)  
+  <img src="./screenshots/bin_flow.png" width="700" height="400">  
+  so this is the flow of this validation section
+
+
+
+  
+ 
 
 
 
