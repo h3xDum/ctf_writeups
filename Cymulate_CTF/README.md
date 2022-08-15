@@ -184,7 +184,7 @@ we get function names, lets open it in IDA to check  what the file does.
   
   lets understand the `shuffle` function, it takes the file_length and the adress to  
   the allocated memory (essentially the bytes of flag.zip) as arguments through rdi & esi  
-  <img src="./screenshots/bin_validate.png" width="750" height="700">  
+  <img src="./screenshots/bin_shuffle.png" width="750" height="700">  
   I've left comments on the assembly instruction that modified values to have full
   understanding on what  
   the algorithem does, but on the high level thats the pseudo code  
@@ -195,7 +195,7 @@ we get function names, lets open it in IDA to check  what the file does.
     srand(0x1337)
 
     // loop through the flag.zip bytes
-    for ( i in file_len) {
+    for ( i in range(file_len)) {
       
       // shuffle values 
       swap(mem_ptr[i] , mem_ptr[rand() % (i+1)])
@@ -219,7 +219,19 @@ we get function names, lets open it in IDA to check  what the file does.
     arr[second_index] = tmp
   }
   ```
+  So all they do is take the bytes from our created "flag.zip" file and rearrange the  
+  bytes by swapping it using the C rand() function which they initialize with a hardcoded  
+  seed everytime, since the rand() function is actually a pseudo-random number generator  
+  and we have the seed they used we can predict the rand() output (assuming we are using the  
+  same implementation of rand(), which will 100% be the same if we use the same version of libc  
+  they used to create the obfuscated memory dump).  
+  &nbsp;  
 
+  Finally lets check what the `validate` function does  
+  <img src="./screenshots/bin_validate" width="750" height="700">  
+  Its the same validate as before but without xoring values with a key, which mean  
+  we cmp each byte from the shuffled flag.zip[index] with the encrypted_memory[index]  
+  and if its the same we pass the validation.
    
 
     
