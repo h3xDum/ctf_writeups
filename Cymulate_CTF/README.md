@@ -180,7 +180,7 @@ we get function names, lets open it in IDA to check  what the file does.
   * shuffle  -> in-depth look later  
   * memcpy   -> essentially copying the encrypted bytes from the data section  
   * validate -> in depth look later  
-  &nbsp;  
+  &nbsp;
   lets understand the `shuffle` function, it takes the file_length and the adress to  
   the allocated memory (essentially the bytes of flag.zip) as arguments through rdi & esi  
   <img src="./screenshots/bin_flow.png" width="700" height="400">  
