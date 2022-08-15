@@ -174,7 +174,12 @@ we get function names, lets open it in IDA to check  what the file does.
   as the previous  bin_bin_bin && bin_bin, although it handles the validation diffrently  
   (added comments && changed var names to easier read)  
   <img src="./screenshots/bin_flow.png" width="700" height="400">  
-  so this is the flow of this validation section
+  so this is the flow of this validation section  
+  * malloc   -> allocate space (the size of bytes returned by ftell on "flag.zip")  
+  * fread    -> read the bytes from flag.zip into the newly created heap memory from malloc  
+  * shuffle  -> in-depth look later  
+  * memcpy   -> essentially copying the encrypted bytes from the data section  
+  * validate -> in depth look later
 
 
 
