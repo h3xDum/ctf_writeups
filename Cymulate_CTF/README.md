@@ -186,7 +186,8 @@ we get function names, lets open it in IDA to check  what the file does.
   the allocated memory (essentially the bytes of flag.zip) as arguments through rdi & esi  
   <img src="./screenshots/bin_validate.png" width="700" height="400">  
   I've left comments on the assembly instruction that modified values to have full
-  understanding on what the algorithem does, but on the high level thats the pseudo code  
+  understanding on what  
+  the algorithem does, but on the high level thats the pseudo code  
   ```
   shuffle(file_len , mem_ptr) {
     
