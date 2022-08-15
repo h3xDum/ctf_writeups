@@ -184,7 +184,41 @@ we get function names, lets open it in IDA to check  what the file does.
   
   lets understand the `shuffle` function, it takes the file_length and the adress to  
   the allocated memory (essentially the bytes of flag.zip) as arguments through rdi & esi  
-  <img src="./screenshots/bin_validate.png" width="700" heigh="400">  
+  <img src="./screenshots/bin_validate.png" width="700" height="400">
+  I've left comments on the assembly instruction that modified values to have full
+  understanding on what the algorithem does, but on the high level thats the pseudo code  
+  ```
+  shuffle(file_len , mem_ptr) {
+    
+    // initialize C rand() func with the seed value 0x1337 
+    srand(0x1337)
+
+    // loop through the flag.zip bytes
+    for ( i in file_len) {
+      
+      // shuffle values 
+      swap(mem_ptr[i] , mem_ptr[rand() % (i+1)])
+       
+    }
+  }
+  ```
+  they are using a swap function which they created  
+  <img src="./screenshots/swap.png" width="700" height="400">  
+  the function grab the byte pointed by rdi(first argument) and save it in a a diffrent location  
+  i called _mem_ptr_byte_ (essentially storing in tmp var), than grab the byte pointed by  
+  rsi(second argument , in this case its the flag.zip[rand() % (loop_index + 1)]) and `mov` its  
+  value into the address pointed by rdi, and than go the the address pointed by rsi and `mov` the  
+  value from our "tmp" into there, so its an actuall swap function  
+
+  ```
+  # pseudo code for swap
+  swap(arr[first_index] , arr[second_index]){
+    tmp = arr[first_index]
+    arr[first_index] = arr[second_index]
+    arr[second_index] = tmp
+  }
+  ```
+
    
 
     
