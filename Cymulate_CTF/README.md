@@ -327,12 +327,11 @@ we get function names, lets open it in IDA to check  what the file does.
   return(0);
   }
   ```
-
- Thats it now lets open the flag.zip file we created , it will be password  
- protected but its the keys used for xoring in the "bin_bin_bin" & "bin_bin" files  
- so the password will be "Y0u_907_7h3_Pa55w0RD". the archive only contains a flag.jpg file  
- which is the actual flag for this challenge  
- <img src="./screenshots/flag.png" width="750" height="700"> 
+  Thats it now lets open the flag.zip file we created , it will be password  
+  protected but its the keys used for xoring in the "bin_bin_bin" & "bin_bin" files  
+  so the password will be "Y0u_907_7h3_Pa55w0RD". the archive only contains a flag.jpg file  
+  which is the actual flag for this challenge  
+  <img src="./screenshots/flag.png" width="750" height="700"> 
 
 
 
