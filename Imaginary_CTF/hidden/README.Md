@@ -1,7 +1,7 @@
 # Solution
 
 
-___We are provied with an executable file called "hidden" , lets  
+___We are provieded with an executable file called "hidden" , lets  
 run  `file` to check it___
 
 ```
