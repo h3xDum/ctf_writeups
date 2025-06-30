@@ -18,7 +18,7 @@ we get function names, lets open it in IDA to check  what the file does.
   A hint about the binary being "packed" with other possible  files is that the .rodata  
   section is really large ( # hint -> it will be like that throughout the challenge )  
   <img src="./screenshots/ro_date.png" width="600" height="80">  
-  the yellowish part it the .rodata section which probably holdes another file due  
+  the yellowish part is the .rodata section which probably holds another file due  
   to its size
   
 
